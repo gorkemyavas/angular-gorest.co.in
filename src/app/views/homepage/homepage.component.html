@@ -1,0 +1,22 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <input type="text" class="form-control" (keyup.enter)="filterByName($event)">
+    </div>
+  </div>
+  <div class="row" *ngFor="let user of users| paginate: { id: 'users',
+                                                      itemsPerPage: 20,
+                                                      currentPage: currentPage,
+                                                      totalItems: total }">
+    <div class="col-2">{{user.name}}</div>
+    <div class="col-2">{{user.email}}</div>
+    <div class="col-2">{{user.gender}}</div>
+    <div class="col-2">{{user.status}}</div>
+    <div class="col-2">
+      <button class="btn" (click)="viewPostsOfUser(user)">View Posts</button>
+    </div>
+  </div>
+</div>
+
+
+<pagination-controls (pageChange)="onPageChane($event)" id="users"></pagination-controls>
